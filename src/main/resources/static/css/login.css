@@ -1,0 +1,66 @@
+ body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 40px;
+        text-align: center;
+    }
+
+    h4 {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: inline-block;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    form input[type="text"], form input[type="password"] {
+    padding: 10px;
+    margin-right: 15px;
+    width: 200px;
+}
+
+    form input[type="button"] {
+        margin: 10px 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    p, a {
+        font-size: 16px;
+        margin: 5px;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+    label { 
+    display: inline-block;
+    width: 80px; 
+    text-align: right; 
+    margin-right: 10px; 
+}
+form input[type="button"] {
+    margin: 20px 5px; 
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* 기존 CSS와 동일한 부분은 생략 */
+
+.center-buttons {
+    display: flex;        
+    justify-content: center;
+    align-items: center;    
+    height: 100px;         
+}

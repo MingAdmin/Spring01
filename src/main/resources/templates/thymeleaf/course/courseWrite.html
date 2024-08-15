@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>수강 정보 등록</title>
+        	<link rel="stylesheet" th:href="@{/css/course.css}"/>
+</head>
+<body>
+    <h1>수강 정보 등록</h1>
+    <form th:action="@{/course/courseInsert.do}" method="post">
+        <table>
+            <tr>
+                <th>수강명</th>
+                <td><input type="text" name="cname" required></td>
+            </tr>
+            <tr>
+                <th>수강시작일</th>
+                <td><input type="date" name="cstart" required></td>
+            </tr>
+            <tr>
+                <th>수강마감일</th>
+                <td><input type="date" name="cend" required></td>
+            </tr>
+            <tr>
+                <th>수강시간</th>
+                <td><input type="text" name="ctime" required></td>
+            </tr>
+            <tr>
+                <th>수강장소</th>
+                <td><input type="text" name="cclassroom" required></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td><input type="number" name="cprice" required></td>
+            </tr>
+            <tr>
+                <th>기간</th>
+                <td><input type="number" name="cperiod" required></td>
+            </tr>
+        </table>
+        <input type="submit" value="등록">
+    </form>
+    <a href="/course/courseList.do">리스트로 돌아가기</a>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>수강 정보 리스트</title>
+    	<link rel="stylesheet" th:href="@{/css/course.css}"/>
+<body>
+    <h1>수강 정보 리스트</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>수강명</th>
+                <th>수강시작일</th>
+                <th>수강마감일</th>
+                <th>수강시간</th>
+                <th>수강장소</th>
+                <th>가격</th>
+                <th>기간</th>
+                <th>상세정보</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course : ${list}">
+                <td th:text="${course.cno}"></td>
+                <td th:text="${course.cname}"></td>
+                <td th:text="${#dates.format(course.cstart, 'yyyy-MM-dd')}"></td>
+				<td th:text="${#dates.format(course.cend, 'yyyy-MM-dd')}"></td>
+                <td th:text="${course.ctime}"></td>
+                <td th:text="${course.cclassroom}"></td>
+                <td th:text="${course.cprice}"></td>
+                <td th:text="${course.cperiod}"></td>
+                <td><a th:readonly="@{/course/courseDetail.do(cno=${course.cno})}">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/course/courseWrite.do">새 수강 정보 추가</a>
+</body>
+</html>

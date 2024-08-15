@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.big.board.mapper.QnaMapper">    
+    <select id="qnaSelectBoardList" resultType="org.big.board.dto.QnaDto">
+        <![CDATA[
+            SELECT 
+                q_board_idx,
+                q_title,
+                q_hit_cnt,
+                q_created_datetime
+            FROM
+                q_board
+            WHERE
+                q_deleted_yn='N'
+            ORDER BY q_board_idx DESC          
+        ]]>
+    </select>
+
+    <insert id="qnaInsertBoard" parameterType="org.big.board.dto.QnaDto" useGeneratedKeys="true">
+        <selectKey keyProperty="qboardidx" resultType="int" order="AFTER">
+            SELECT q_seq.currval FROM dual
+        </selectKey>
+        <![CDATA[
+            INSERT INTO q_board
+            (
+                q_board_idx,
+                q_title, 
+                q_content,
+                q_created_datetime,
+                q_creator_id
+            )
+            VALUES
+            (
+                q_seq.nextval,
+                #{qtitle},
+                #{qcontent},
+                sysdate,
+                #{qcreatorid}
+            )
+        ]]>
+    </insert>
+
+    <update id="qnaUpdateHitCount" parameterType="int">
+        <![CDATA[
+            UPDATE 
+                q_board 
+            SET 
+                q_hit_cnt = q_hit_cnt + 1 
+            WHERE 
+                q_board_idx = #{qboardidx}
+        ]]>
+    </update>
+
+    <select id="qnaSelectBoardDetail" parameterType="int" resultType="org.big.board.dto.QnaDto">
+        <![CDATA[
+            SELECT
+                q_board_idx,
+                q_title,
+                q_content,
+                q_hit_cnt,
+                q_created_datetime,
+                q_creator_id
+            FROM
+                q_board
+            WHERE
+                q_board_idx = #{qboardidx}
+                AND q_deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <update id="qnaUpdateBoard" parameterType="org.big.board.dto.QnaDto">
+        <![CDATA[
+            UPDATE q_board SET 
+                q_title = #{qtitle},
+                q_content = #{qcontent},
+                q_updated_datetime = sysdate,
+                q_updator_id = #{qupdatorid}
+            WHERE 
+                q_board_idx = #{qboardidx}
+        ]]>
+    </update>
+
+    <update id="qnaDeleteBoard" parameterType="int">
+        <![CDATA[
+            UPDATE q_board SET 
+                q_deleted_yn = 'Y',
+                q_updated_datetime = sysdate,
+                q_updator_id = #{qupdatorid}
+            WHERE 
+                q_board_idx = #{qboardidx}
+        ]]>
+    </update>
+</mapper>

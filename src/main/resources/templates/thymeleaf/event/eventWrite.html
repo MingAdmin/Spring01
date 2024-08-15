@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>이벤트 등록</h1>
+        <form id="frm" name="frm" method="post" action="/event/eventinsert.do" enctype="multipart/form-data">
+            <table class="board_detail">
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" id="etitle" name="etitle"/></td>
+                    <td>작성자</td>
+                    <td><input type="text" id="ecreatorid" name="ecreatorid"/></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <textarea id="econtent" name="econtent"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" id="submit" value="저장" class="btn"/>
+        </form>
+    </div>
+</body>
+</html>

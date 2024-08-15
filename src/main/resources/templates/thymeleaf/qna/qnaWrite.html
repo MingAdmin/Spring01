@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Qna 게시판 등록</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Qna 게시판 등록</h1>
+        <form id="frm" name="frm" method="post" action="/qna/qnaInsert.do">
+            <table class="board_detail">
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" id="qtitle" name="qtitle"/></td>
+                    <td>작성자</td>
+                    <td><input type="text" id="qcreatorid" name="qcreatorid"/></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <textarea id="qcontent" name="qcontent"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" id="submit" value="저장" class="btn"/>
+        </form>
+    </div>
+</body>
+</html>

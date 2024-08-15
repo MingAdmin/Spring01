@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>수강후기 상세정보</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div class="container">
+        <h2>수강후기 상세정보</h2>
+        <table class="board_detail">
+            <colgroup>
+                <col width="15%"/>
+                <col width="35%"/>
+                <col width="15%"/>
+                <col width="35%"/>
+            </colgroup>
+            <caption>수강 상세내용</caption>
+            <tbody>
+                <tr>
+                    <th scope="row">글 번호</th>
+                    <td th:text="${review.rboardidx }"></td>
+                    <th scope="row">조회수</th>
+                    <td th:text="${review.rhitcnt }"></td>
+                </tr>
+                <tr>
+                    <th scope="row">작성자</th>
+                    <td th:text="${review.rcreatorid }"></td>
+                    <th scope="row">작성일</th>
+                    <td th:text="${#dates.format(review.rcreateddatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">제목</th>
+                    <td colspan="3" th:text="${review.rtitle }"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="view_text">
+                        <p th:text="${review.rcontent}"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="#this" id="list" class="btn">목록으로</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#list").on("click", function(){
+                location.href = "/review/list";
+            });
+        });
+    </script>
+</body>
+</html>

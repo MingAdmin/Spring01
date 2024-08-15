@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.big.board.mapper.OrderMapper">
+
+	<select id="getEnrolledCourses" resultType="org.big.board.dto.OrderDto">
+		SELECT order_no, student_id, c_no, status, m_no
+		FROM orders
+	</select>
+
+<!-- 	<insert id="enrollCourse"
+		parameterType="org.big.board.dto.OrderDto">
+		INSERT INTO orders(order_no, student_id, c_no, status)
+		VALUES(order_seq.nextval, #{studentId}, #{c_no}, '결제 완료')
+	</insert>
+
+	<update id="cancelCourse" parameterType="int">
+		UPDATE orders SET status
+		= '취소'
+		WHERE order_no = #{orderNo}
+	</update> -->
+
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.big.board.mapper.BoardMapper">
+  	<select id="selectBoardList" resultType="org.big.board.dto.BoardDto">
+  		<![CDATA[
+  			SELECT 
+  				n_board_idx,
+  				n_title,
+  				n_hit_cnt,
+  				n_created_datetime
+  			FROM
+  				n_board
+  			WHERE
+  				n_deleted_yn='N'
+  			ORDER BY n_board_idx DESC			
+  		]]>
+  	</select>
+  	
+  	<insert id="insertBoard" parameterType="org.big.board.dto.BoardDto" useGeneratedKeys="true">
+  	<selectKey keyProperty="nboardidx" resultType="int" order="AFTER">
+  			SELECT n_seq.currval FROM dual
+  	</selectKey>
+  		<![CDATA[
+  			INSERT INTO n_board
+  			(
+  				n_board_idx,
+  				n_title, 
+  				n_content,
+  				n_created_datetime,
+  				n_creator_id
+  			)
+  			VALUES
+  			(
+  				n_seq.nextval,
+  				#{ntitle},
+  				#{ncontent},
+  				sysdate,
+  				#{ncreatorid}
+  			)
+  		]]>
+  	</insert>
+  	
+  	<update id="updateHitCount" parameterType="int">
+		<![CDATA[
+			UPDATE 
+				n_board 
+			SET 
+				n_hit_cnt = n_hit_cnt + 1 
+			WHERE 
+				n_board_idx = #{nboardidx}
+		]]>
+	</update>
+  	
+  	<select id="selectBoardDetail" parameterType="int" resultType="org.big.board.dto.BoardDto">
+		<![CDATA[
+			SELECT
+				n_board_idx,
+				n_title,
+				n_content,
+				n_hit_cnt,
+				n_created_datetime,
+				n_creator_id
+			FROM
+				n_board
+			WHERE
+				n_board_idx = #{nboardidx}
+				AND n_deleted_yn = 'N'
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="org.big.board.dto.BoardDto">
+		<![CDATA[
+			UPDATE n_board SET 
+				n_title = #{ntitle},
+				n_content = #{ncontent},
+				n_updated_datetime = sysdate,
+				n_updator_id = #{nupdatorid}
+			WHERE 
+				n_board_idx = #{nboardidx}
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		<![CDATA[
+			UPDATE n_board SET 
+				n_deleted_yn = 'Y',
+				n_updated_datetime = sysdate,
+				n_updator_id = #{nupdatorid}
+			WHERE 
+				n_board_idx = #{nboardidx}
+		]]>
+	</update>
+</mapper>

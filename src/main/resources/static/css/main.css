@@ -1,0 +1,309 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* 박스 사이즈를 측정할 때에 padding을 고려하여 계산해서 보여준다. */
+}
+
+ul {
+	list-style: none;
+}
+
+#container {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+header {
+	width: 100%;
+	height: 100px;
+	background-color: #FFE5CC;
+}
+
+#logo {
+	float: left;
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	padding-left: 30px;
+}
+
+nav {
+	float: right;
+	width: 900px;
+	height: 100px;
+}
+
+#topMenu {
+	height: 60px;
+}
+
+#topMenu>li {
+	float: left;
+	/* 하위 ul 태그들은 부모 li 태그의 플로팅에 따라간다. */
+	position: relative;
+	margin: 40px 0px 0px 0px;
+}
+
+#topMenu>li>a {
+	display: block;
+	/* 블록으로 지정하면 인라인 태그인 a 태그의 좁은 클릭 범위가 아니라 넓은 li태그의 범위만큼 클릭이 가능해진다. */
+	color: #000;
+	font-weight: 600;
+	margin: 20px 60px;
+	/* 왜 예시코드에서는 padding을 준지 모르겠다. 메뉴 사이의 간격이라면 margin이 맞지 않을까? */
+}
+
+#topMenu>li>a>span {
+	font-size: 0.5em;
+}
+
+#topMenu>li>a:hover {
+	color: #000;
+}
+
+#topMenu>li>ul {
+	display: none;
+	position: absolute;
+	width: 160px;
+	background-color: rgba(255, 255, 255, 0.6);
+	left: 20px;
+	z-index: 10;
+}
+
+#topMenu>li>ul>li {
+	padding: 10px 10px 10px 20px;
+}
+
+#topMenu>li>ul>li>a {
+	padding: 8px;
+}
+
+#topMenu>li:hover>ul {
+	display: block;
+}
+
+#topMenu>li>ul>li>a:hover {
+	color: #f00;
+}
+
+#slideShow {
+	clear: both;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
+}
+
+#slides {
+	position: absolute;
+	height: 300px;
+}
+
+#slides>img {
+	width: 100%;
+	float: left;
+}
+
+button {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	border: none;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+	color: #000;
+	opacity: 0.5;
+}
+
+button:hover {
+	background-color: #222;
+	color: #fff;
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+button:focus {
+	outline: 0;
+}
+
+#prev {
+	left: 0;
+}
+
+#next {
+	right: 0;
+}
+
+#contents {
+	width: 100%;
+	height: 300px;
+}
+
+#tabMenu {
+	float: left;
+	width: 600px;
+	height: 100%;
+	margin-top: 10px;
+}
+
+#tabMenu input[type="radio"] {
+	display: none;
+}
+
+#tabMenu>label {
+	display: inline-block;
+	margin: 0 0;
+	padding: 15px 25px;
+	font-weight: 600;
+	text-align: center;
+	color: #aaa;
+	border: 1px solid transparent;
+}
+
+#tabMenu>label:hover {
+	cursor: pointer;
+}
+
+#tabMenu>input:checked+label {
+	color: #b00;
+	border: 1px solid #ddd;
+	background-color: #eee;
+}
+
+.tabContent {
+	display: none;
+	padding: 20px 0 0;
+}
+
+.tabContent h2 {
+	display: none;
+}
+
+#notice>ul {
+	list-style: disc;
+	margin-left: 50px;
+}
+
+#notice>ul>li {
+	font-size: 16px;
+	line-height: 2;
+}
+
+#gallery ul li {
+	display: inline;
+}
+
+#tab1:checked~#notice,
+#tab2:checked~#gallery {
+	display: block;
+}
+
+#links {
+	float: right;
+	width: 600px;
+	height: 100%;
+	margin-top: 35px;
+}
+
+#links>ul {
+	overflow: hidden;
+	padding: 0;
+}
+
+#links>ul>li {
+	float: left;
+	width: 33%;
+	text-align: center;
+	margin: 10px 0;
+}
+
+#links>ul>li>a>span {
+	display: block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+	border: 1px solid #ddd;
+	line-height: 150px;
+}
+
+#quick-icon1 {
+	background-image: url("../images/icon-1.jpg");
+}
+
+#quick-icon2 {
+	background-image: url("../images/icon-2.jpg");
+}
+
+#quick-icon3 {
+	background-image: url("../images/icon-3.jpg");
+}
+
+footer {
+	width: 100%;
+	height: 100px;
+	border-top: 2px solid #222;
+}
+
+#bottomMenu {
+	width: 100%;
+	height: 20px;
+	position: relative;
+}
+
+#bottomMenu ul {
+	margin-top: 15px;
+	overflow: hidden;
+}
+
+#bottomMenu ul li {
+	float: left;
+	padding: 5px 20px;
+	border-right: 1px solid #ddd;
+}
+
+#bottomMenu ul li:last-child {
+	border-right: none;
+}
+
+#sns {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#sns ul li {
+	border: none;
+}
+
+#company {
+	clear: both;
+	margin-top: 20px;
+	margin-left: 25px;
+}
+
+a {
+	text-decoration: none;
+}
+
+#logo h1 {
+	font-weight: 700;
+	font-size: 40px;
+	color: #000
+}
+
+body {
+	background-color: #FFE5CC;
+}
+
+.button-group {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.button-group input[type="button"],
+.button-group input[type="reset"] {
+	margin: 0 10px;
+}

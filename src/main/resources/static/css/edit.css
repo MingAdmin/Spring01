@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F2F2F2;
+}
+
+h3 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 5px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    margin-right: 10px;
+    width: 100px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.input-group button {
+            margin-left: auto;
+        }
+
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    padding: 8px 16px;
+    background-color: #f58634; /* 변경된 색상 */
+    color: #FFF;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+    background-color: #e07128; /* 변경된 색상 */
+}
+
+select[name="tel1"],
+select[name="emaildomain"] {
+    height: 40px; /* 원하는 높이값으로 변경 */
+    width: 140px;
+}
+
+.button-group {
+    text-align: center;
+}
+
+.button-group button {
+    margin: 10px; /* 버튼 간격 조정 */
+}

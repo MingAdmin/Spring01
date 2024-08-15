@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.big.board.mapper.ReviewMapper">	
+    <select id="selectReviewList" resultType="org.big.board.dto.ReviewDto">
+        <![CDATA[
+            SELECT 
+                r_board_idx,
+                r_title,
+                r_hit_cnt,
+                r_created_datetime
+            FROM
+                r_board
+            WHERE
+                r_deleted_yn='N'
+            ORDER BY r_board_idx DESC
+        ]]>
+    </select>
+    
+    <insert id="insertReview" parameterType="org.big.board.dto.ReviewDto" useGeneratedKeys="true">
+        <selectKey keyProperty="rboardidx" resultType="int" order="AFTER">
+            SELECT r_seq.currval FROM dual
+        </selectKey>
+        <![CDATA[
+            INSERT INTO r_board
+            (
+                r_board_idx,
+                r_title, 
+                r_content,
+                r_created_datetime,
+                r_creator_id
+            )
+            VALUES
+            (
+                r_seq.nextval,
+                #{rtitle},
+                #{rcontent},
+                sysdate,
+                #{rcreatorid}
+            )
+        ]]>
+    </insert>
+    
+    <update id="updateReviewHitCount" parameterType="int">
+        <![CDATA[
+            UPDATE 
+                r_board 
+            SET 
+                r_hit_cnt = r_hit_cnt + 1 
+            WHERE 
+                r_board_idx = #{rboardidx}
+        ]]>
+    </update>
+    
+    <select id="selectReviewDetail" parameterType="int" resultType="org.big.board.dto.ReviewDto">
+        <![CDATA[
+            SELECT
+                r_board_idx,
+                r_title,
+                r_content,
+                r_hit_cnt,
+                r_created_datetime,
+                r_creator_id
+            FROM
+                r_board
+            WHERE
+                r_board_idx = #{rboardidx}
+                AND r_deleted_yn = 'N'
+        ]]>
+    </select>
+    
+    <update id="updateReview" parameterType="org.big.board.dto.ReviewDto">
+        <![CDATA[
+            UPDATE r_board SET 
+                r_title = #{rtitle},
+                r_content = #{rcontent},
+                r_updated_datetime = sysdate,
+                r_updator_id = #{rupdatorid}
+            WHERE 
+                r_board_idx = #{rboardidx}
+        ]]>
+    </update>
+    
+    <update id="deleteReview" parameterType="int">
+        <![CDATA[
+            UPDATE r_board SET 
+                r_deleted_yn = 'Y',
+                r_updated_datetime = sysdate,
+                r_updator_id = #{rupdatorid}
+            WHERE 
+                r_board_idx = #{rboardidx}
+        ]]>
+    </update>
+</mapper>

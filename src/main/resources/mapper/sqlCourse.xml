@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.big.board.mapper.CourseMapper">    
+    <select id="selectCourseList" resultType="org.big.board.dto.CourseDto">
+        <![CDATA[
+            SELECT 
+                c_no as cno,
+                c_name as cname,
+                c_start as cstart,
+                c_end as cend,
+                c_time as ctime,
+                c_classroom as cclassroom,
+                c_price as cprice,
+                c_period as cperiod
+            FROM
+                course
+            ORDER BY c_no DESC
+        ]]>
+    </select>
+    
+    <insert id="insertCourse" parameterType="org.big.board.dto.CourseDto" useGeneratedKeys="true" keyProperty="cno" keyColumn="c_no">
+        <![CDATA[
+            INSERT INTO course
+            (
+                c_no,
+                c_name, 
+                c_start,
+                c_end,
+                c_time,
+                c_classroom,
+                c_price,
+                c_period
+            )
+            VALUES
+            (
+                c_seq.nextval,
+                #{cname},
+                #{cstart},
+                #{cend},
+                #{ctime},
+                #{cclassroom},
+                #{cprice},
+                #{cperiod}
+            )
+            
+        ]]>
+    </insert>
+    
+    <select id="selectCourseDetail" parameterType="int" resultType="org.big.board.dto.CourseDto">
+        <![CDATA[
+            SELECT
+                c_no as cno,
+                c_name as cname,
+                c_start as cstart,
+                c_end as cend,
+                c_time as ctime,
+                c_classroom as cclassroom,
+                c_price as cprice,
+                c_period as cperiod
+            FROM
+                course
+            WHERE
+                c_no = #{cno}
+        ]]>
+    </select>
+    
+    <update id="updateCourse" parameterType="org.big.board.dto.CourseDto">
+        <![CDATA[
+            UPDATE course SET 
+                c_name = #{cname},
+                c_start = #{cstart},
+                c_end = #{cend},
+                c_time = #{ctime},
+                c_classroom = #{cclassroom},
+                c_price = #{cprice},
+                c_period = #{cperiod}
+            WHERE 
+                c_no = #{cno}
+        ]]>
+    </update>
+    
+    <delete id="deleteCourse" parameterType="int">
+        <![CDATA[
+            DELETE FROM course
+            WHERE 
+                c_no = #{cno}
+        ]]>
+    </delete>
+</mapper>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>수강 정보 상세</title>
+    	<link rel="stylesheet" th:href="@{/css/course.css}"/>
+</head>
+<body>
+    <h1>수강 정보 상세</h1>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <td th:text="${course.cno}"></td>
+        </tr>
+        <tr>
+            <th>수강명</th>
+            <td th:text="${course.cname}"></td>
+        </tr>
+        <tr>
+            <th>수강시작일</th>
+            <td th:text="${course.cstart}"></td>
+        </tr>
+        <tr>
+            <th>수강마감일</th>
+            <td th:text="${course.cend}"></td>
+        </tr>
+        <tr>
+            <th>수강시간</th>
+            <td th:text="${course.ctime}"></td>
+        </tr>
+        <tr>
+            <th>수강장소</th>
+            <td th:text="${course.cclassroom}"></td>
+        </tr>
+        <tr>
+            <th>가격</th>
+            <td th:text="${course.cprice}"></td>
+        </tr>
+        <tr>
+            <th>기간</th>
+            <td th:text="${course.cperiod}"></td>
+        </tr>
+    </table>
+	<a th:href="@{/orders/orderList.do(cno=${course.cno})}">구매</a>
+</form>
+    <a href="/course/courseList.do">리스트로 돌아가기</a>
+</body>
+</html>

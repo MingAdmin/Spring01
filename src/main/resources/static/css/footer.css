@@ -1,0 +1,10 @@
+#topHeader {
+    background-color: white; /* 배경색 설정 */
+    border: 1px solid #ccc; /* 테두리 스타일 및 색상 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+}
+
+#topRightButtons li {
+    display: inline; /* 버튼을 가로로 배치 */
+    margin-left: 10px; /* 버튼 사이의 간격 설정 */
+}

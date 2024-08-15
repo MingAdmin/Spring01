@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>수강 정보 리스트</title>
+    <link rel="stylesheet" th:href="@{/css/orderResult.css}" />
+</head>
+<body>
+    <div class="receipt-container">
+        <h1 th:text="${m_id + '님이 수강 신청하였습니다.'}"></h1>
+        
+        <table class="details-table">
+            <tr>
+                <th>번호</th>
+                <td th:text="${course.cno}"></td>
+            </tr>
+            <tr>
+                <th>수강명</th>
+                <td th:text="${course.cname}"></td>
+            </tr>
+            <tr>
+                <th>수강시작일</th>
+                <td th:text="${#dates.format(course.cstart, 'yyyy-MM-dd')}"></td>
+            </tr>
+            <tr>
+                <th>수강마감일</th>
+                <td th:text="${#dates.format(course.cend, 'yyyy-MM-dd')}"></td>
+            </tr>
+            <tr>
+                <th>수강시간</th>
+                <td th:text="${course.ctime}"></td>
+            </tr>
+            <tr>
+                <th>수강장소</th>
+                <td th:text="${course.cclassroom}"></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td th:text="${course.cprice}"></td>
+            </tr>
+            <tr>
+                <th>기간</th>
+                <td th:text="${course.cperiod}"></td>
+            </tr>
+        </table>
+        
+        <h2>수강 신청이 완료되었습니다.</h2>
+        <a href="http://localhost:8080/board/index.do" class="main-button">메인 화면으로 가기</a>
+    </div>
+</body>
+</html>
